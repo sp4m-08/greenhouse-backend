@@ -24,15 +24,8 @@ Crucial for security - DO NOT commit local environment variables!
 .env
 .flaskenv
 
-Machine Learning Artifacts
-
-Ignoring the pickle file since it can be regenerated and might become large.
-
-If your model is small and you want to track it, delete this line.
-
-random_forest_model.pkl
-
 Temporary files and logs
 
 *.log
 .DS_Store
+firebase_test
