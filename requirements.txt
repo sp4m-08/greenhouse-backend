@@ -1,0 +1,10 @@
+scikit-learn 
+numpy 
+pandas
+fastapi
+uvicorn[standard]
+scikit-learn
+numpy
+requests
+pydantic
+python-dotenv
