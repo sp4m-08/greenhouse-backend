@@ -1,0 +1,23 @@
+name: Render Service Heartbeat
+
+# This defines the schedule: runs every 5 minutes
+on:
+  schedule:
+    # Use UTC time. "*/5" means every 5th minute (0, 5, 10, 15, ..., 55)
+    - cron: '*/5 * * * *'
+
+jobs:
+  ping_service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Service Health Endpoint
+        # Use the public URL for your deployed FastAPI service
+        env:
+          SERVICE_URL: "https://greenhouse-backend-1.onrender.com/health"
+        run: |
+          echo "Pinging service at $SERVICE_URL"
+          # The -m 30 sets a 30-second timeout.
+          # The -s hides progress, and -o /dev/null discards the response.
+          # -w specifies what to output: time_total is useful for logs.
+          # Use the /health endpoint for a fast, light check.
+          curl -s -o /dev/null -w "HTTP Status: %{http_code}\nTotal time: %{time_total}s\n" -m 30 "$SERVICE_URL"
